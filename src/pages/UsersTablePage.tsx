@@ -118,7 +118,13 @@ export function UsersTablePage() {
           onValueChange={(v) => setCompanyFilter(v ?? 'all')}
         >
           <SelectTrigger className="w-40">
-            <SelectValue placeholder="All Companies" />
+            <SelectValue placeholder="All Companies">
+              {(value) =>
+                value === 'all'
+                  ? 'All Companies'
+                  : (COMPANIES.find((c) => c.id === value)?.name ?? 'All Companies')
+              }
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Companies</SelectItem>
@@ -136,7 +142,9 @@ export function UsersTablePage() {
           onValueChange={(v) => setRoleFilter(v ?? 'all')}
         >
           <SelectTrigger className="w-36">
-            <SelectValue placeholder="All Roles" />
+            <SelectValue placeholder="All Roles">
+              {(value) => (value === 'all' ? 'All Roles' : value)}
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Roles</SelectItem>
@@ -154,7 +162,15 @@ export function UsersTablePage() {
           onValueChange={(v) => setStatusFilter(v ?? 'all')}
         >
           <SelectTrigger className="w-32">
-            <SelectValue placeholder="All Status" />
+            <SelectValue placeholder="All Status">
+              {(value) =>
+                value === 'all'
+                  ? 'All Status'
+                  : ({ active: 'Active', pending: 'Pending', disabled: 'Disabled' }[
+                      value as string
+                    ] ?? 'All Status')
+              }
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Status</SelectItem>
