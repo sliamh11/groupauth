@@ -318,6 +318,67 @@ export const RECENT_ACTIVITY: Activity[] = [
   { id: 'a6', user: 'Anat Levi', company: 'cympire', action: 'Role changed', time: '3 hours ago' },
 ]
 
+// ── Company Detail page fixtures (Wave 2) ──────────────────────────────────
+
+export interface CompanyMember {
+  id: string
+  name: string
+  role: string
+  status: 'active' | 'pending' | 'disabled'
+  lastLogin: string
+}
+
+export interface AiInsight {
+  id: string
+  iconType: 'trend-up' | 'alert'
+  title: string
+  body: string
+}
+
+export interface CompanyDomainConfig {
+  allowedEmailPattern: string
+  ssoRedirectUrl: string
+}
+
+export const COMPANY_MEMBERS: CompanyMember[] = [
+  { id: 'cm1', name: 'Sarah Chen', role: 'Admin', status: 'active', lastLogin: '2h ago' },
+  { id: 'cm2', name: 'David Kim', role: 'Manager', status: 'active', lastLogin: '12h ago' },
+  { id: 'cm3', name: 'Ava Anderson', role: 'Manager', status: 'pending', lastLogin: 'Never' },
+  { id: 'cm4', name: 'Jennifer Liu', role: 'User', status: 'active', lastLogin: '1d ago' },
+  { id: 'cm5', name: 'Marcus Zhang', role: 'User', status: 'active', lastLogin: '3h ago' },
+  { id: 'cm6', name: 'Lisa Wang', role: 'Admin', status: 'active', lastLogin: '5h ago' },
+  { id: 'cm7', name: 'Kevin Patel', role: 'User', status: 'disabled', lastLogin: '1w ago' },
+  { id: 'cm8', name: 'Rachel Green', role: 'User', status: 'active', lastLogin: '8h ago' },
+]
+
+export const CYMPIRE_AI_INSIGHTS: AiInsight[] = [
+  {
+    id: 'ai1',
+    iconType: 'trend-up',
+    title: 'Security Improvement Detected',
+    body: 'MFA adoption increased by 12% this month (from 82% to 94%), representing 8 new users enabling two-factor authentication. This is the highest improvement across all companies in the BSW Group.',
+  },
+  {
+    id: 'ai2',
+    iconType: 'trend-up',
+    title: 'Login Success Rate Trending Up',
+    body: 'Average login success rate improved to 98.7% (up from 95.2% last week). Failed login attempts decreased by 47%, suggesting better password management practices.',
+  },
+  {
+    id: 'ai3',
+    iconType: 'alert',
+    title: 'Inactive Admin Account',
+    body: '1 admin user (Kevin Patel) hasn\'t logged in for 7+ days. Consider reviewing high-privilege inactive accounts for security compliance.',
+  },
+]
+
+export const CYMPIRE_DOMAIN_CONFIG: CompanyDomainConfig = {
+  allowedEmailPattern: '*@cympire.com',
+  ssoRedirectUrl: 'https://auth.cympire.com/sso/callback',
+}
+
+// ── Login History ────────────────────────────────────────────────────────────
+
 export const LOGIN_HISTORY: LoginEvent[] = [
   {
     id: 'l1',
