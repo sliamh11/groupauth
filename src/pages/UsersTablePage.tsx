@@ -118,7 +118,7 @@ export function UsersTablePage() {
           onValueChange={(v) => setCompanyFilter(v ?? 'all')}
         >
           <SelectTrigger className="w-40">
-            <SelectValue />
+            <SelectValue placeholder="All Companies" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Companies</SelectItem>
@@ -136,7 +136,7 @@ export function UsersTablePage() {
           onValueChange={(v) => setRoleFilter(v ?? 'all')}
         >
           <SelectTrigger className="w-36">
-            <SelectValue />
+            <SelectValue placeholder="All Roles" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Roles</SelectItem>
@@ -154,7 +154,7 @@ export function UsersTablePage() {
           onValueChange={(v) => setStatusFilter(v ?? 'all')}
         >
           <SelectTrigger className="w-32">
-            <SelectValue />
+            <SelectValue placeholder="All Status" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Status</SelectItem>
