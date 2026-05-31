@@ -3,6 +3,108 @@
 
 import type { Company, User, Role, Activity, LoginEvent } from '@/types'
 
+// Wave 2 — per-user role assignments (distinct from role definitions in ROLES)
+export interface RoleAssignment {
+  id: string
+  userId: string
+  roleName: string
+  companyScope: string
+  assignedDate: string
+}
+
+export const ROLE_ASSIGNMENTS: RoleAssignment[] = [
+  {
+    id: 'ra1',
+    userId: 'u1',
+    roleName: 'Admin',
+    companyScope: 'Cympire',
+    assignedDate: 'Jan 15, 2025',
+  },
+  {
+    id: 'ra2',
+    userId: 'u1',
+    roleName: 'Manager',
+    companyScope: 'All Companies',
+    assignedDate: 'Feb 3, 2025',
+  },
+]
+
+// Wave 2 — login history rows matching wireframe 05-user-detail (~8 rows)
+export const USER_LOGIN_HISTORY: LoginEvent[] = [
+  {
+    id: 'lh1',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Chrome on macOS',
+    status: 'success',
+    timestamp: 'May 31, 2026 14:32',
+  },
+  {
+    id: 'lh2',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Chrome on macOS',
+    status: 'success',
+    timestamp: 'May 31, 2026 09:15',
+  },
+  {
+    id: 'lh3',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Chrome on macOS',
+    status: 'success',
+    timestamp: 'May 30, 2026 18:45',
+  },
+  {
+    id: 'lh4',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Safari on iPhone',
+    status: 'success',
+    timestamp: 'May 30, 2026 08:20',
+  },
+  {
+    id: 'lh5',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Chrome on macOS',
+    status: 'success',
+    timestamp: 'May 29, 2026 16:10',
+  },
+  {
+    id: 'lh6',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Chrome on macOS',
+    status: 'failed',
+    timestamp: 'May 29, 2026 03:05',
+  },
+  {
+    id: 'lh7',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Firefox on Windows',
+    status: 'success',
+    timestamp: 'May 28, 2026 11:30',
+  },
+  {
+    id: 'lh8',
+    userId: 'u1',
+    ip: '192.168.1.100',
+    location: 'San Francisco, CA',
+    device: 'Chrome on macOS',
+    status: 'success',
+    timestamp: 'May 27, 2026 09:00',
+  },
+]
+
 export const COMPANIES: Company[] = [
   {
     id: 'cympire',
