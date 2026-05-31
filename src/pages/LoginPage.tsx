@@ -17,7 +17,7 @@ export function LoginPage() {
   return (
     <div className="flex flex-col items-center gap-6">
       {/* Logo + wordmark */}
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex items-center gap-2 justify-center">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
           <ShieldCheck className="size-6 text-primary-foreground" />
         </div>
