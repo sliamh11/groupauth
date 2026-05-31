@@ -408,3 +408,99 @@ export const LOGIN_HISTORY: LoginEvent[] = [
     timestamp: '3 days ago',
   },
 ]
+
+// ── Wave 3 — Role Management page fixtures ─────────────────────────────────
+// Distinct from ROLES (which is kept for backward-compat).
+// These carry the wireframe-exact user counts, descriptions, permission states,
+// and company scopes consumed by RoleManagementPage.
+
+import type { Permission } from '@/types'
+
+function mkPerms(
+  viewUsers: boolean,
+  createUsers: boolean,
+  editUsers: boolean,
+  deleteUsers: boolean,
+  viewSettings: boolean,
+  editSettings: boolean,
+  viewReports: boolean,
+  exportReports: boolean,
+  apiRead: boolean,
+  apiWrite: boolean,
+): Permission[] {
+  return [
+    { id: 'view-users',      label: 'View users',      group: 'User Management',  enabled: viewUsers },
+    { id: 'create-users',    label: 'Create users',    group: 'User Management',  enabled: createUsers },
+    { id: 'edit-users',      label: 'Edit users',      group: 'User Management',  enabled: editUsers },
+    { id: 'delete-users',    label: 'Delete users',    group: 'User Management',  enabled: deleteUsers },
+    { id: 'view-settings',   label: 'View settings',   group: 'Company Settings', enabled: viewSettings },
+    { id: 'edit-settings',   label: 'Edit settings',   group: 'Company Settings', enabled: editSettings },
+    { id: 'view-reports',    label: 'View reports',    group: 'Reports',          enabled: viewReports },
+    { id: 'export-reports',  label: 'Export reports',  group: 'Reports',          enabled: exportReports },
+    { id: 'api-read',        label: 'Read access',     group: 'API Access',       enabled: apiRead },
+    { id: 'api-write',       label: 'Write access',    group: 'API Access',       enabled: apiWrite },
+  ]
+}
+
+export interface RoleDetail {
+  id: string
+  name: string
+  description: string
+  userCount: number
+  isSystemRole: boolean
+  companyScopes: string[]
+  permissions: Permission[]
+}
+
+export const ROLE_DETAILS: RoleDetail[] = [
+  {
+    id: 'rd1',
+    name: 'Super Admin',
+    description:
+      'Full system access across all companies and all permission groups. Reserved for platform administrators.',
+    userCount: 3,
+    isSystemRole: true,
+    companyScopes: ['cympire', 'cywareness', 'codeus', 'bina', 'soterio'],
+    permissions: mkPerms(true, true, true, true, true, true, true, true, true, true),
+  },
+  {
+    id: 'rd2',
+    name: 'Company Admin',
+    description:
+      'Administrators can manage users, configure company settings, and access reports within their assigned companies. This role provides elevated permissions while maintaining company-level scope restrictions.',
+    userCount: 10,
+    isSystemRole: false,
+    companyScopes: ['cympire', 'cywareness'],
+    permissions: mkPerms(true, true, true, false, true, true, true, true, true, false),
+  },
+  {
+    id: 'rd3',
+    name: 'Manager',
+    description:
+      'Manage users and view reports within the assigned company. Cannot modify company settings or delete users.',
+    userCount: 24,
+    isSystemRole: false,
+    companyScopes: ['cympire'],
+    permissions: mkPerms(true, true, true, false, true, false, true, false, true, false),
+  },
+  {
+    id: 'rd4',
+    name: 'Viewer',
+    description:
+      'Read-only access to users and reports. No ability to make changes or access API.',
+    userCount: 245,
+    isSystemRole: false,
+    companyScopes: [],
+    permissions: mkPerms(true, false, false, false, true, false, true, false, false, false),
+  },
+  {
+    id: 'rd5',
+    name: 'Custom',
+    description:
+      'Customized permission set for special use cases. Grants edit access to users, full API access, and report export capabilities.',
+    userCount: 5,
+    isSystemRole: false,
+    companyScopes: ['codeus', 'bina'],
+    permissions: mkPerms(true, false, true, false, false, false, true, true, true, true),
+  },
+]
